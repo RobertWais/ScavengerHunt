@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class SignInVC: UIViewController {
 
     @IBOutlet weak var guestNameField: UITextField!
     @IBOutlet weak var startBtn: UIButton!
@@ -23,11 +23,14 @@ class ViewController: UIViewController {
 
 
     @IBAction func startBtnPressed(_ sender: Any) {
+        let storyboard: UIStoryboard = UIStoryboard(name: "Map", bundle: .main)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "MapVC") as! MapVC
+        self.present(viewController, animated: true, completion: nil)
     }
     
 }
 
-extension ViewController: UITextFieldDelegate {
+extension SignInVC: UITextFieldDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
