@@ -13,6 +13,7 @@
 		2E86436421802B2B00D558FC /* ScavengerBattle.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2E86436221802B2B00D558FC /* ScavengerBattle.xcdatamodeld */; };
 		2E86436621802B2F00D558FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E86436521802B2F00D558FC /* Assets.xcassets */; };
 		2E86436921802B2F00D558FC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E86436721802B2F00D558FC /* LaunchScreen.storyboard */; };
+		2E86437121802E3000D558FC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E86437021802E3000D558FC /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		2E86436521802B2F00D558FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2E86436821802B2F00D558FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2E86436A21802B2F00D558FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2E86437021802E3000D558FC /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				2E86436721802B2F00D558FC /* LaunchScreen.storyboard */,
 				2E86436A21802B2F00D558FC /* Info.plist */,
 				2E86436221802B2B00D558FC /* ScavengerBattle.xcdatamodeld */,
+				2E86437021802E3000D558FC /* Constants.swift */,
 			);
 			path = ScavengerBattle;
 			sourceTree = "<group>";
@@ -141,6 +144,7 @@
 				2E86435E21802B2B00D558FC /* ViewController.swift in Sources */,
 				2E86435C21802B2B00D558FC /* AppDelegate.swift in Sources */,
 				2E86436421802B2B00D558FC /* ScavengerBattle.xcdatamodeld in Sources */,
+				2E86437121802E3000D558FC /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,6 +289,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6V78FR972C;
 				INFOPLIST_FILE = ScavengerBattle/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -302,6 +307,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6V78FR972C;
 				INFOPLIST_FILE = ScavengerBattle/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
