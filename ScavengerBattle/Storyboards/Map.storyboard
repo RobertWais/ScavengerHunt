@@ -32,7 +32,11 @@
                         <viewLayoutGuide key="safeArea" id="yOC-6k-oaE"/>
                     </view>
                     <navigationItem key="navigationItem" title="Map" leftItemsSupplementBackButton="YES" largeTitleDisplayMode="always" id="31k-fB-axB">
-                        <barButtonItem key="leftBarButtonItem" title="^" id="cgP-ER-LNe"/>
+                        <barButtonItem key="leftBarButtonItem" title="^" id="cgP-ER-LNe">
+                            <connections>
+                                <action selector="zoomToUserLocation:" destination="Jje-gV-yaV" id="RN3-56-rcA"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Bag" id="vvI-Og-U4G">
                             <connections>
                                 <action selector="bagBtnPressed:" destination="Jje-gV-yaV" id="7zI-mR-fH6"/>
@@ -41,6 +45,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="bagBtn" destination="vvI-Og-U4G" id="zLq-OB-3OS"/>
+                        <outlet property="mapView" destination="mat-np-i8Q" id="x9j-FZ-mWC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PVF-3F-8Fn" userLabel="First Responder" sceneMemberID="firstResponder"/>
