@@ -24,8 +24,8 @@ class SignInVC: UIViewController {
 
     @IBAction func startBtnPressed(_ sender: Any) {
         let storyboard: UIStoryboard = UIStoryboard(name: "Map", bundle: .main)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "MapVC") as! MapVC
-        self.present(viewController, animated: true, completion: nil)
+        let viewController = storyboard.instantiateInitialViewController()!
+        self.show(viewController, sender: self)
     }
     
 }

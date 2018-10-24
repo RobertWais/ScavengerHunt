@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E539837218116E500846975 /* BagModalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E539836218116E500846975 /* BagModalVC.swift */; };
+		2E53983921812A4700846975 /* PowerUpCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E53983821812A4700846975 /* PowerUpCell.swift */; };
 		2E86435C21802B2B00D558FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E86435B21802B2B00D558FC /* AppDelegate.swift */; };
 		2E86435E21802B2B00D558FC /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E86435D21802B2B00D558FC /* SignInVC.swift */; };
 		2E86436121802B2B00D558FC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E86435F21802B2B00D558FC /* Main.storyboard */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2E539836218116E500846975 /* BagModalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BagModalVC.swift; sourceTree = "<group>"; };
+		2E53983821812A4700846975 /* PowerUpCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpCell.swift; sourceTree = "<group>"; };
 		2E86435821802B2B00D558FC /* ScavengerBattle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScavengerBattle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E86435B21802B2B00D558FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2E86435D21802B2B00D558FC /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
@@ -43,6 +47,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2E53983A21812A4C00846975 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				2E53983821812A4700846975 /* PowerUpCell.swift */,
+			);
+			path = TableViewCells;
+			sourceTree = "<group>";
+		};
 		2E86434F21802B2A00D558FC = {
 			isa = PBXGroup;
 			children = (
@@ -62,6 +74,7 @@
 		2E86435A21802B2B00D558FC /* ScavengerBattle */ = {
 			isa = PBXGroup;
 			children = (
+				2E53983A21812A4C00846975 /* TableViewCells */,
 				2E864375218035BB00D558FC /* Controllers */,
 				2E8643722180335200D558FC /* Storyboards */,
 				2E86435B21802B2B00D558FC /* AppDelegate.swift */,
@@ -88,6 +101,7 @@
 			children = (
 				2E86435D21802B2B00D558FC /* SignInVC.swift */,
 				2E864376218035DC00D558FC /* MapVC.swift */,
+				2E539836218116E500846975 /* BagModalVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -167,6 +181,8 @@
 				2E864377218035DC00D558FC /* MapVC.swift in Sources */,
 				2E86435E21802B2B00D558FC /* SignInVC.swift in Sources */,
 				2E86435C21802B2B00D558FC /* AppDelegate.swift in Sources */,
+				2E539837218116E500846975 /* BagModalVC.swift in Sources */,
+				2E53983921812A4700846975 /* PowerUpCell.swift in Sources */,
 				2E86436421802B2B00D558FC /* ScavengerBattle.xcdatamodeld in Sources */,
 				2E86437121802E3000D558FC /* Constants.swift in Sources */,
 			);
