@@ -24,9 +24,9 @@ class PowerUpCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configureCell(name: String, damage: Double){
-        self.itemName.text = name
-        self.damageName.text = String(describing: damage)
+    func configureCell(item: Item){
+        self.itemName.text = item.name
+        self.damageName.text = String(describing: item.damage)
     }
 
 }

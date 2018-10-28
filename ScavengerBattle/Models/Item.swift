@@ -10,8 +10,8 @@ import Foundation
 
 
 class Item{
-    var _name = ""
-    var _damage = 0.0
+    private var _name = ""
+    private var _damage = 0.0
     
     init(name: String, damage: Double){
         self._name = name

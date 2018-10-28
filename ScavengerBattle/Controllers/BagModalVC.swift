@@ -35,7 +35,7 @@ extension BagModalVC: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PowerUpId") as! PowerUpCell
         
-        cell.configureCell(name: "Axe", damage: 50)
+        cell.configureCell(item: Item(name: "Axe", damage: Double(indexPath.row*10)))
         return cell
     }
     
