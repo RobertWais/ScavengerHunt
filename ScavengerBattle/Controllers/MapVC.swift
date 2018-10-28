@@ -16,7 +16,7 @@ class MapVC: UIViewController,MKMapViewDelegate {
     @IBOutlet weak var bagBtn: UIBarButtonItem!
     
     var locationManager = CLLocationManager()
-    let coords = [(43.8014,-91.2396),(234.3,180.2), (122.3,111.3), (100.3,100.3)]
+    let coords = [(43.814466,-91.239214),(43.817338,-91.239096), (43.817245,-91.245297), (43.815023,-91.245254)]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +26,7 @@ class MapVC: UIViewController,MKMapViewDelegate {
         locationManager.requestAlwaysAuthorization()
         buildSpots()
         
-         let region = MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2D(latitude: coords[0].0, longitude: coords[0].1), 5000, 5000)
+         let region = MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2D(latitude: coords[0].0, longitude: coords[0].1), 500, 500)
         mapView.setRegion(region, animated: true)
         // Do any additional setup after loading the view.
     }
@@ -52,8 +52,8 @@ class MapVC: UIViewController,MKMapViewDelegate {
             print("Building spots")
             let zone = PowerZone(coordinate: CLLocationCoordinate2D(latitude: coords[index].0, longitude: coords[index].1), radius: 100, id: String(describing: index), item: Item(name: "Axe", damage: Double(index*2)))
             
-            mapView.addAnnotation(zone)
-            mapView.add(MKCircle(center: CLLocationCoordinate2D(latitude: coords[index].0, longitude: coords[index].1), radius: 10000))
+//            mapView.addAnnotation(zone)
+            mapView.add(MKCircle(center: CLLocationCoordinate2D(latitude: coords[index].0, longitude: coords[index].1), radius: 50))
         }
         
     }
@@ -69,9 +69,8 @@ class MapVC: UIViewController,MKMapViewDelegate {
             
             if zoneView == nil{
                 zoneView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: id)
-                
                 //Able to add stuff to annotation bubble
-//                zoneView?.canShowCallout = true
+                zoneView?.canShowCallout = true
                 
             }else{
                 //REVISIT

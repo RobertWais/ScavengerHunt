@@ -17,7 +17,13 @@ class PowerZone: NSObject, MKAnnotation{
     var id: String
     var item: Item
     
+    var title: String? {
+        return item.name
+    }
     
+    var subtitle: String? {
+        return String(describing: item.damage)
+    }
     init(coordinate: CLLocationCoordinate2D, radius: CLLocationDistance, id: String, item: Item){
         self.coordinate = coordinate
         self.radius = radius
