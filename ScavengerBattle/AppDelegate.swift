@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var locationManager = CLLocationManager()
+    weak var delegateAlert: AlertDelegate?
     
 
 
@@ -108,14 +109,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if UIApplication.shared.applicationState == .active {
             //Handle local
-            print("Entered zone")
+            delegateAlert?.sendAlert()
         } else{
             let notification = UNMutableNotificationContent()
             notification.title = "Notification"
             notification.subtitle = "Subtitle"
             notification.body = "Body"
             
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.5, repeats: false)
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0, repeats: false)
             let request = UNNotificationRequest(identifier: "EnteredLocation", content: notification, trigger: trigger)
             
             UNUserNotificationCenter.current().add(request) { error in

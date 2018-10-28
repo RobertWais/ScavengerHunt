@@ -10,17 +10,24 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class MapVC: UIViewController,MKMapViewDelegate {
+protocol AlertDelegate: class {
+    func sendAlert()
+}
+
+class MapVC: UIViewController, MKMapViewDelegate,AlertDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var bagBtn: UIBarButtonItem!
     
     var locationManager = CLLocationManager()
     let coords = [(43.814466,-91.239214),(43.817338,-91.239096), (43.817245,-91.245297), (43.815023,-91.245254)]
+    var count = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let appDel = UIApplication.shared.delegate as! AppDelegate
+        appDel.delegateAlert = self
         mapView.delegate = self
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
@@ -31,9 +38,16 @@ class MapVC: UIViewController,MKMapViewDelegate {
         // Do any additional setup after loading the view.
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func sendAlert(){
+        if count == 0 {
+            print("Sending Alert Happened")
+            let alert = UIAlertController(title: "Title", message: "Message", preferredStyle: .alert)
+            let cancelButton = UIAlertAction(title: "Close", style: .cancel, handler: nil)
+            alert.addAction(cancelButton)
+            self.present(alert, animated: false, completion: nil)
+            count += 1
+        }
+        
     }
     
     @IBAction func bagBtnPressed(_ sender: Any) {
