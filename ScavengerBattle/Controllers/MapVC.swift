@@ -52,10 +52,23 @@ class MapVC: UIViewController,MKMapViewDelegate {
             print("Building spots")
             let zone = PowerZone(coordinate: CLLocationCoordinate2D(latitude: coords[index].0, longitude: coords[index].1), radius: 100, id: String(describing: index), item: Item(name: "Axe", damage: Double(index*2)))
             
-//            mapView.addAnnotation(zone)
+            
+            //Add Pin
+            mapView.addAnnotation(zone)
+            //Add Overlay
             mapView.add(MKCircle(center: CLLocationCoordinate2D(latitude: coords[index].0, longitude: coords[index].1), radius: 50))
+            
+            //Start Monitorying
+            let fenceRegion = region(with: zone)
+            locationManager.startMonitoring(for: fenceRegion)
         }
         
+    }
+    
+    func region(with zone: PowerZone) -> CLCircularRegion {
+        let region = CLCircularRegion(center: zone.coordinate, radius: zone.radius, identifier: zone.id)
+        region.notifyOnEntry = true
+        return region
     }
     
     

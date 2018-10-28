@@ -38,6 +38,7 @@
 		2E86437021802E3000D558FC /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2E8643732180336D00D558FC /* Map.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
 		2E864376218035DC00D558FC /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
+		2E9AD7B82185658200FD0C88 /* CoateHall.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = CoateHall.gpx; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +88,7 @@
 		2E86435A21802B2B00D558FC /* ScavengerBattle */ = {
 			isa = PBXGroup;
 			children = (
+				2E9AD7B72185654800FD0C88 /* Locations */,
 				2E53983B21813CEC00846975 /* Models */,
 				2E53983A21812A4C00846975 /* TableViewCells */,
 				2E864375218035BB00D558FC /* Controllers */,
@@ -118,6 +120,14 @@
 				2E539836218116E500846975 /* BagModalVC.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		2E9AD7B72185654800FD0C88 /* Locations */ = {
+			isa = PBXGroup;
+			children = (
+				2E9AD7B82185658200FD0C88 /* CoateHall.gpx */,
+			);
+			path = Locations;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
