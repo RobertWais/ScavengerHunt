@@ -9,6 +9,8 @@
 import UIKit
 import MapKit
 import CoreLocation
+import FirebaseDatabase
+import FirebaseDatabase.FIRDataSnapshot
 
 protocol AlertDelegate: class {
     func sendAlert()
@@ -22,9 +24,14 @@ class MapVC: UIViewController, MKMapViewDelegate,AlertDelegate {
     var locationManager = CLLocationManager()
     let coords = [(43.814466,-91.239214),(43.817338,-91.239096), (43.817245,-91.245297), (43.815023,-91.245254)]
     var count = 0
+    var ref: DatabaseReference!
+    var zones: DatabaseReference!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        ref = Database.database().reference()
+        zones = ref.child("Zones")
         
         let appDel = UIApplication.shared.delegate as! AppDelegate
         appDel.delegateAlert = self
@@ -35,6 +42,10 @@ class MapVC: UIViewController, MKMapViewDelegate,AlertDelegate {
         
          let region = MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2D(latitude: coords[0].0, longitude: coords[0].1), 500, 500)
         mapView.setRegion(region, animated: true)
+        
+        
+        
+//        addZones()
         // Do any additional setup after loading the view.
     }
     
@@ -61,10 +72,41 @@ class MapVC: UIViewController, MKMapViewDelegate,AlertDelegate {
         mapView.zoomOnUser()
     }
     
+    func addZones(){
+        ref = Database.database().reference()
+        for index in 0..<coords.count {
+            
+            guard let key = ref.child("Zones").childByAutoId().key else{
+                return
+            }
+            let zone: [String: Any] = ["coordinates": ["X":coords[index].0,"Y":coords[index].1],
+                                       "radius": 10,
+                                       "id": String(describing: index),
+                                       "itemID": "FirstItemID"]
+            ref.child("Zones").child(key).setValue(zone)
+            
+            //        var coordinate: CLLocationCoordinate2D
+            //        var radius: CLLocationDistance
+            //        var id: String
+            //        var itemID: String
+            
+        }
+    }
+    
     func buildSpots(){
+        zones.observe(DataEventType.value){ snapshot in
+        
+            for child in snapshot.children.allObjects as! [DataSnapshot] {
+                print("Key: \(child.key)")
+                let zone = PowerZone(snapshot: child)
+                print("Zone: \(zone?.coordinate)")
+                
+            }
+        }
+        
         for index in  0..<coords.count{
             print("Building spots")
-            let zone = PowerZone(coordinate: CLLocationCoordinate2D(latitude: coords[index].0, longitude: coords[index].1), radius: 100, id: String(describing: index), item: Item(name: "Axe", damage: Double(index*2)))
+            let zone = PowerZone(coordinate: CLLocationCoordinate2D(latitude: coords[index].0, longitude: coords[index].1), radius: 100, id: String(describing: index))
             
             
             //Add Pin
@@ -122,6 +164,8 @@ class MapVC: UIViewController, MKMapViewDelegate,AlertDelegate {
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         
     }
+    
+   
 }
 
 extension MKMapView {

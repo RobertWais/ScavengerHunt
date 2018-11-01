@@ -1,0 +1,6 @@
+framework module Pods_ScavengerBattle {
+  umbrella header "Pods-ScavengerBattle-umbrella.h"
+
+  export *
+  module * { export * }
+}
