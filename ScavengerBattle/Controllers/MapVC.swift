@@ -93,32 +93,27 @@ class MapVC: UIViewController, MKMapViewDelegate,AlertDelegate {
         }
     }
     
+    //Load Spots In
     func buildSpots(){
         zones.observe(DataEventType.value){ snapshot in
         
             for child in snapshot.children.allObjects as! [DataSnapshot] {
                 print("Key: \(child.key)")
-                let zone = PowerZone(snapshot: child)
-                print("Zone: \(zone?.coordinate)")
+                guard let zone = PowerZone(snapshot: child) else{
+                    print("Error loading")
+                    return
+                }
+                print("Zone: \(zone.coordinate)")
+                //Add Pin
+                self.mapView.addAnnotation(zone)
+                //Add Overlay
+                self.mapView.add(MKCircle(center: CLLocationCoordinate2D(latitude: zone.coordinate.latitude, longitude: zone.coordinate.longitude), radius: zone.radius))
                 
+                //Start Monitorying
+                let fenceRegion = self.region(with: zone)
+                self.locationManager.startMonitoring(for: fenceRegion)
             }
         }
-        
-        for index in  0..<coords.count{
-            print("Building spots")
-            let zone = PowerZone(coordinate: CLLocationCoordinate2D(latitude: coords[index].0, longitude: coords[index].1), radius: 100, id: String(describing: index))
-            
-            
-            //Add Pin
-            mapView.addAnnotation(zone)
-            //Add Overlay
-            mapView.add(MKCircle(center: CLLocationCoordinate2D(latitude: coords[index].0, longitude: coords[index].1), radius: 50))
-            
-            //Start Monitorying
-            let fenceRegion = region(with: zone)
-            locationManager.startMonitoring(for: fenceRegion)
-        }
-        
     }
     
     func region(with zone: PowerZone) -> CLCircularRegion {

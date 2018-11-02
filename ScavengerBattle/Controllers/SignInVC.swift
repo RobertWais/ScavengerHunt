@@ -7,17 +7,41 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class SignInVC: UIViewController {
 
+    
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var OpponentSelector: UISegmentedControl!
     @IBOutlet weak var guestNameField: UITextField!
     @IBOutlet weak var startBtn: UIButton!
+    var ref:DatabaseReference!
+    var usersWaiting = [User]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setDelegate();
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        ref = Database.database().reference().child("Pool")
+        
+        
         startBtn.layer.borderWidth = 2.0
         startBtn.layer.borderColor = UIColor.white.cgColor
         startBtn.layer.cornerRadius = startBtn.frame.height/2
+        ref.observe(DataEventType.childAdded) { (data) in
+            if let user = User(snapshot: data){
+                print("Name \(user.username)")
+                print("Id \(user.id)")
+                self.usersWaiting.append(user)
+                self.tableView.reloadData()
+            }else{
+                //No Values
+                print("Error")
+            }
+        }
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -27,6 +51,23 @@ class SignInVC: UIViewController {
         let viewController = storyboard.instantiateInitialViewController()!
         self.show(viewController, sender: self)
     }
+    
+    @IBAction func opponentSelected(_ sender: UISegmentedControl) {
+        //0 - Computer
+        //1 - Plyaer
+        if sender.selectedSegmentIndex == 0{
+            tableView.isHidden = true
+            print("Computer")
+            ref.child("testId").setValue(nil)
+        }else if sender.selectedSegmentIndex == 1{
+            tableView.isHidden = false
+            print("Player")
+            let user: [String:Any] = ["testId": ["id": "1",
+                                                  "username":"CurrentUser"]]
+            ref.updateChildValues(user)
+        }
+    }
+    
     
 }
 
@@ -44,5 +85,27 @@ extension SignInVC: UITextFieldDelegate {
         self.guestNameField.delegate = self
     }
     
+}
+
+extension SignInVC: UITableViewDelegate, UITableViewDataSource{
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        print("Creating cell")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "userCell") as! UserCell
+        cell.configureCell(name: usersWaiting[indexPath.row].username)
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return usersWaiting.count
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func setDelegates(){
+        
+    }
 }
 

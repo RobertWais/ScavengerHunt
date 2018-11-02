@@ -4,8 +4,8 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -43,6 +43,49 @@
                                     <action selector="startBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3XT-h5-MrN"/>
                                 </connections>
                             </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ZZC-4F-N91">
+                                <rect key="frame" x="100" y="398.5" width="175" height="29"/>
+                                <color key="backgroundColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <segments>
+                                    <segment title="Computer"/>
+                                    <segment title="Player"/>
+                                </segments>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="opponentSelected:" destination="BYZ-38-t0r" eventType="valueChanged" id="FsT-uq-crS"/>
+                                </connections>
+                            </segmentedControl>
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Dgw-W2-Ez6">
+                                <rect key="frame" x="15" y="446.5" width="345" height="145.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="userCell" id="eXN-DG-4pb" customClass="UserCell" customModule="ScavengerBattle" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="345" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eXN-DG-4pb" id="TYf-bi-PvB">
+                                            <rect key="frame" x="0.0" y="0.0" width="345" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XFc-Mf-WBk">
+                                                    <rect key="frame" x="15" y="11" width="315" height="22"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="XFc-Mf-WBk" secondAttribute="trailing" id="Hmm-y9-asT"/>
+                                                <constraint firstItem="XFc-Mf-WBk" firstAttribute="leading" secondItem="TYf-bi-PvB" secondAttribute="leadingMargin" id="OrJ-Xk-ni3"/>
+                                                <constraint firstItem="XFc-Mf-WBk" firstAttribute="top" secondItem="TYf-bi-PvB" secondAttribute="topMargin" id="dLB-Ps-yI2"/>
+                                                <constraint firstItem="XFc-Mf-WBk" firstAttribute="bottom" secondItem="TYf-bi-PvB" secondAttribute="bottomMargin" id="nmu-Sc-hqV"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="UsernameLbl" destination="XFc-Mf-WBk" id="rZH-H6-eWD"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -51,17 +94,27 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="hto-bS-tMS" secondAttribute="bottom" constant="20" id="9lE-ko-J5t"/>
                             <constraint firstItem="hto-bS-tMS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="F7E-1w-Sme"/>
                             <constraint firstItem="aMc-1q-SfO" firstAttribute="top" secondItem="dqI-qF-fZR" secondAttribute="bottom" constant="100" id="Juf-3g-Oz0"/>
+                            <constraint firstItem="ZZC-4F-N91" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="100" id="LGI-Qp-79s"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ZZC-4F-N91" secondAttribute="trailing" constant="100" id="NNg-E6-0A2"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="aMc-1q-SfO" secondAttribute="trailing" constant="100" id="Pot-MB-OYz"/>
+                            <constraint firstItem="Dgw-W2-Ez6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="Pxl-tU-uJD"/>
                             <constraint firstItem="dqI-qF-fZR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Yw1-Q8-Suf"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Dgw-W2-Ez6" secondAttribute="trailing" constant="15" id="aT8-2U-bJZ"/>
                             <constraint firstItem="aMc-1q-SfO" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="100" id="cGb-TZ-eVC"/>
+                            <constraint firstItem="ZZC-4F-N91" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="ddu-NF-EVe"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="hto-bS-tMS" secondAttribute="trailing" constant="15" id="kGF-bI-Mr4"/>
+                            <constraint firstItem="Dgw-W2-Ez6" firstAttribute="top" secondItem="ZZC-4F-N91" secondAttribute="bottom" constant="20" id="kP2-Fl-y7P"/>
+                            <constraint firstItem="ZZC-4F-N91" firstAttribute="top" secondItem="aMc-1q-SfO" secondAttribute="bottom" constant="40" id="v6R-Od-EO6"/>
+                            <constraint firstItem="hto-bS-tMS" firstAttribute="top" secondItem="Dgw-W2-Ez6" secondAttribute="bottom" constant="5" id="wXI-DL-iuL"/>
                             <constraint firstItem="aMc-1q-SfO" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="yNx-Kf-pk0"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="OpponentSelector" destination="ZZC-4F-N91" id="yjp-0c-GG8"/>
                         <outlet property="guestNameField" destination="aMc-1q-SfO" id="gcc-hs-HfX"/>
                         <outlet property="startBtn" destination="hto-bS-tMS" id="FBN-V5-M7a"/>
+                        <outlet property="tableView" destination="Dgw-W2-Ez6" id="czv-Vo-nOa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
