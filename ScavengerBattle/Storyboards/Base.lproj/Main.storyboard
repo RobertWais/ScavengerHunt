@@ -5,7 +5,6 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -58,6 +57,7 @@
                             <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Dgw-W2-Ez6">
                                 <rect key="frame" x="15" y="446.5" width="345" height="145.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="userCell" id="eXN-DG-4pb" customClass="UserCell" customModule="ScavengerBattle" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="345" height="44"/>
@@ -66,18 +66,35 @@
                                             <rect key="frame" x="0.0" y="0.0" width="345" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XFc-Mf-WBk">
-                                                    <rect key="frame" x="15" y="11" width="315" height="22"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="W1A-9S-XKg">
+                                                    <rect key="frame" x="0.0" y="0.0" width="345" height="43.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XFc-Mf-WBk">
+                                                            <rect key="frame" x="0.0" y="0.0" width="172.5" height="43.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2wD-Nx-3B2">
+                                                            <rect key="frame" x="172.5" y="0.0" width="172.5" height="43.5"/>
+                                                            <state key="normal" title="Play">
+                                                                <color key="titleColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            </state>
+                                                        </button>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="2wD-Nx-3B2" firstAttribute="leading" secondItem="XFc-Mf-WBk" secondAttribute="trailing" id="8tv-y2-GeV"/>
+                                                        <constraint firstAttribute="bottom" secondItem="XFc-Mf-WBk" secondAttribute="bottom" id="9LL-3r-pP5"/>
+                                                        <constraint firstItem="XFc-Mf-WBk" firstAttribute="top" secondItem="W1A-9S-XKg" secondAttribute="top" id="O0j-yS-QPQ"/>
+                                                        <constraint firstItem="XFc-Mf-WBk" firstAttribute="leading" secondItem="W1A-9S-XKg" secondAttribute="leading" id="c0q-Ev-fsm"/>
+                                                    </constraints>
+                                                </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="XFc-Mf-WBk" secondAttribute="trailing" id="Hmm-y9-asT"/>
-                                                <constraint firstItem="XFc-Mf-WBk" firstAttribute="leading" secondItem="TYf-bi-PvB" secondAttribute="leadingMargin" id="OrJ-Xk-ni3"/>
-                                                <constraint firstItem="XFc-Mf-WBk" firstAttribute="top" secondItem="TYf-bi-PvB" secondAttribute="topMargin" id="dLB-Ps-yI2"/>
-                                                <constraint firstItem="XFc-Mf-WBk" firstAttribute="bottom" secondItem="TYf-bi-PvB" secondAttribute="bottomMargin" id="nmu-Sc-hqV"/>
+                                                <constraint firstAttribute="bottom" secondItem="W1A-9S-XKg" secondAttribute="bottom" id="5HF-9S-pOx"/>
+                                                <constraint firstItem="W1A-9S-XKg" firstAttribute="leading" secondItem="TYf-bi-PvB" secondAttribute="leading" id="NCr-Z1-j7f"/>
+                                                <constraint firstAttribute="trailing" secondItem="W1A-9S-XKg" secondAttribute="trailing" id="QNk-6S-oxJ"/>
+                                                <constraint firstItem="W1A-9S-XKg" firstAttribute="top" secondItem="TYf-bi-PvB" secondAttribute="top" id="pvo-68-wZ5"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>

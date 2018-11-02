@@ -23,6 +23,7 @@ class SignInVC: UIViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.layer.cornerRadius = 10
         
         ref = Database.database().reference().child("Pool")
         
@@ -30,17 +31,11 @@ class SignInVC: UIViewController {
         startBtn.layer.borderWidth = 2.0
         startBtn.layer.borderColor = UIColor.white.cgColor
         startBtn.layer.cornerRadius = startBtn.frame.height/2
-        ref.observe(DataEventType.childAdded) { (data) in
-            if let user = User(snapshot: data){
-                print("Name \(user.username)")
-                print("Id \(user.id)")
-                self.usersWaiting.append(user)
-                self.tableView.reloadData()
-            }else{
-                //No Values
-                print("Error")
-            }
-        }
+        setObservers()
+        
+        
+        tableView.separatorColor = Constants.Colors.baseColor
+       
         
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -68,6 +63,35 @@ class SignInVC: UIViewController {
         }
     }
     
+    func setObservers(){
+        ref.observe(DataEventType.childAdded) { (data) in
+            if let user = User(snapshot: data){
+                self.usersWaiting.append(user)
+                self.tableView.reloadData()
+            }else{
+                //No Values
+                print("Error")
+            }
+        }
+        
+        ref.observe(DataEventType.childRemoved) { (data) in
+            //If there is a user here delete it
+            if let user = User(snapshot: data){
+                
+                for index in 0..<self.usersWaiting.count{
+                    if self.usersWaiting[index].id == user.id {
+                        self.usersWaiting.remove(at: index)
+                        break
+                    }
+                }
+                self.tableView.reloadData()
+            }else{
+                //No Values
+                print("Error")
+            }
+        }
+    }
+    
     
 }
 
@@ -89,9 +113,10 @@ extension SignInVC: UITextFieldDelegate {
 
 extension SignInVC: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("Creating cell")
         let cell = tableView.dequeueReusableCell(withIdentifier: "userCell") as! UserCell
         cell.configureCell(name: usersWaiting[indexPath.row].username)
+        
+        
         
         return cell
     }
@@ -102,10 +127,6 @@ extension SignInVC: UITableViewDelegate, UITableViewDataSource{
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
-    }
-    
-    func setDelegates(){
-        
     }
 }
 
