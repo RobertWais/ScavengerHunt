@@ -23,6 +23,8 @@
 		2E8643742180336D00D558FC /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E8643732180336D00D558FC /* Map.storyboard */; };
 		2E864377218035DC00D558FC /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E864376218035DC00D558FC /* MapVC.swift */; };
 		2E9E1F28218A88A300470932 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2E9E1F27218A88A100470932 /* GoogleService-Info.plist */; };
+		2EE905BC218D348D00748AC2 /* Battle.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2EE905BB218D348D00748AC2 /* Battle.storyboard */; };
+		2EE905BE218D38B300748AC2 /* BattleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE905BD218D38B300748AC2 /* BattleVC.swift */; };
 		3BC33420FCC2321A95196CB6 /* Pods_ScavengerBattle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21941758878B5654FA99BDF /* Pods_ScavengerBattle.framework */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +48,8 @@
 		2E864376218035DC00D558FC /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
 		2E9AD7B82185658200FD0C88 /* CoateHall.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = CoateHall.gpx; sourceTree = "<group>"; };
 		2E9E1F27218A88A100470932 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2EE905BB218D348D00748AC2 /* Battle.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Battle.storyboard; sourceTree = "<group>"; };
+		2EE905BD218D38B300748AC2 /* BattleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleVC.swift; sourceTree = "<group>"; };
 		4912CF58F85713F5200F3666 /* Pods-ScavengerBattle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScavengerBattle.release.xcconfig"; path = "Pods/Target Support Files/Pods-ScavengerBattle/Pods-ScavengerBattle.release.xcconfig"; sourceTree = "<group>"; };
 		9E3A592BD9EA6CB032B2D7E8 /* Pods-ScavengerBattle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScavengerBattle.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ScavengerBattle/Pods-ScavengerBattle.debug.xcconfig"; sourceTree = "<group>"; };
 		D21941758878B5654FA99BDF /* Pods_ScavengerBattle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ScavengerBattle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -124,6 +128,7 @@
 			children = (
 				2E86435F21802B2B00D558FC /* Main.storyboard */,
 				2E8643732180336D00D558FC /* Map.storyboard */,
+				2EE905BB218D348D00748AC2 /* Battle.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -134,6 +139,7 @@
 				2E86435D21802B2B00D558FC /* SignInVC.swift */,
 				2E864376218035DC00D558FC /* MapVC.swift */,
 				2E539836218116E500846975 /* BagModalVC.swift */,
+				2EE905BD218D38B300748AC2 /* BattleVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -223,6 +229,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2EE905BC218D348D00748AC2 /* Battle.storyboard in Resources */,
 				2E9E1F28218A88A300470932 /* GoogleService-Info.plist in Resources */,
 				2E86436921802B2F00D558FC /* LaunchScreen.storyboard in Resources */,
 				2E86436621802B2F00D558FC /* Assets.xcassets in Resources */,
@@ -284,6 +291,7 @@
 				2E864377218035DC00D558FC /* MapVC.swift in Sources */,
 				2E86435E21802B2B00D558FC /* SignInVC.swift in Sources */,
 				2E53983F21813F9200846975 /* PowerZone.swift in Sources */,
+				2EE905BE218D38B300748AC2 /* BattleVC.swift in Sources */,
 				2E86435C21802B2B00D558FC /* AppDelegate.swift in Sources */,
 				2E539837218116E500846975 /* BagModalVC.swift in Sources */,
 				2E53983D21813D0900846975 /* Item.swift in Sources */,
