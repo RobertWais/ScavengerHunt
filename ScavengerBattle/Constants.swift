@@ -13,4 +13,26 @@ struct Constants {
     struct Colors {
         static let baseColor = UIColor(red: 255/255, green: 149/255, blue: 0/255, alpha: 1.0)
     }
+    
+    //The mode the player is in
+    struct Mode {
+        //Mode - 0 = Computer
+        //Mode - 1 = LivePlayer
+        static var mode = 0
+    }
+    
+    //The Map Zones that are read in
+    struct Map{
+        static var zones = [String: PowerZone]()
+    }
+    
+    //Everything to do with weapons
+    struct Arsenal{
+        
+        static var items = [Item]()
+        static var totalItems: [String: Item] = [   "1":Item(name: "Axe", damage: 20.0),
+                                                 "2":Item(name: "Hammer", damage: 10.0),
+                                                 "3":Item(name: "Sword", damage: 30.0)]
+        
+    }
 }

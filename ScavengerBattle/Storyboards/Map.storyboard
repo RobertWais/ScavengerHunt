@@ -20,11 +20,33 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="mat-np-i8Q">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                             </mapView>
+                            <view alpha="0.45000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="avE-oC-EDw">
+                                <rect key="frame" x="16" y="80" width="200" height="30"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u03-db-5dA">
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Ch1-vD-Gpg"/>
+                                    <constraint firstAttribute="trailing" secondItem="u03-db-5dA" secondAttribute="trailing" id="Xe7-ez-jwR"/>
+                                    <constraint firstAttribute="width" constant="200" id="Zmy-rz-azC"/>
+                                    <constraint firstItem="u03-db-5dA" firstAttribute="leading" secondItem="avE-oC-EDw" secondAttribute="leading" id="fec-lB-HJ0"/>
+                                    <constraint firstItem="u03-db-5dA" firstAttribute="top" secondItem="avE-oC-EDw" secondAttribute="top" id="m6H-YT-Uyr"/>
+                                    <constraint firstAttribute="bottom" secondItem="u03-db-5dA" secondAttribute="bottom" id="p09-wI-Ygi"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="yOC-6k-oaE" firstAttribute="trailing" secondItem="mat-np-i8Q" secondAttribute="trailing" id="1lA-1s-vYZ"/>
                             <constraint firstItem="yOC-6k-oaE" firstAttribute="bottom" secondItem="mat-np-i8Q" secondAttribute="bottom" id="8Ja-w7-yxh"/>
+                            <constraint firstItem="avE-oC-EDw" firstAttribute="top" secondItem="yOC-6k-oaE" secondAttribute="top" constant="16" id="CqQ-UH-Ysy"/>
+                            <constraint firstItem="avE-oC-EDw" firstAttribute="leading" secondItem="yOC-6k-oaE" secondAttribute="leading" constant="16" id="OPY-yD-z2K"/>
                             <constraint firstItem="mat-np-i8Q" firstAttribute="top" secondItem="yOC-6k-oaE" secondAttribute="top" id="X11-Yv-DqU"/>
                             <constraint firstItem="mat-np-i8Q" firstAttribute="leading" secondItem="yOC-6k-oaE" secondAttribute="leading" id="eJ2-ii-4z4"/>
                         </constraints>
@@ -45,6 +67,8 @@
                     <connections>
                         <outlet property="bagBtn" destination="vvI-Og-U4G" id="zLq-OB-3OS"/>
                         <outlet property="mapView" destination="mat-np-i8Q" id="x9j-FZ-mWC"/>
+                        <outlet property="timerLbl" destination="u03-db-5dA" id="4HN-c1-bmC"/>
+                        <outlet property="timerLblView" destination="avE-oC-EDw" id="wm9-3Z-VRX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PVF-3F-8Fn" userLabel="First Responder" sceneMemberID="firstResponder"/>

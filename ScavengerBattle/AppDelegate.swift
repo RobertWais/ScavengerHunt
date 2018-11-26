@@ -113,7 +113,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if UIApplication.shared.applicationState == .active {
             //Handle local
-            delegateAlert?.sendAlert()
+            delegateAlert?.sendAlert(id: region.identifier)
         } else{
             let notification = UNMutableNotificationContent()
             notification.title = "Notification"

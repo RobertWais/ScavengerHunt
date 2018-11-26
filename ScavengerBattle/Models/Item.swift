@@ -25,5 +25,4 @@ class Item{
     var damage: Double{
         return _damage
     }
-    
 }

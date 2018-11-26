@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UFS-RU-NhV">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -12,7 +12,7 @@
         <!--BattleVC-->
         <scene sceneID="DP9-o3-m6g">
             <objects>
-                <viewController id="UFS-RU-NhV" customClass="BattleVC" customModule="ScavengerBattle" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BattleVC" id="UFS-RU-NhV" customClass="BattleVC" customModule="ScavengerBattle" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hSk-UT-K4M">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -71,7 +71,7 @@
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BkQ-f1-8Vz">
                                                 <rect key="frame" x="100" y="0.0" width="282" height="90.333333333333329"/>
-                                                <color key="backgroundColor" red="0.0014340299760000001" green="0.98564849330000004" blue="0.40216347000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" red="0.96660670579999997" green="0.97547465730000005" blue="0.97547465730000005" alpha="0.97677951389999995" colorSpace="custom" customColorSpace="sRGB"/>
                                             </view>
                                         </subviews>
                                     </stackView>
@@ -86,7 +86,7 @@
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Gs-Nz-IK1">
                                                 <rect key="frame" x="100" y="0.0" width="282" height="90"/>
-                                                <color key="backgroundColor" red="0.0014340299760000001" green="0.98564849330000004" blue="0.40216347000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" red="0.96660670579999997" green="0.97547465730000005" blue="0.97547465730000005" alpha="0.97677951389999995" colorSpace="custom" customColorSpace="sRGB"/>
                                             </view>
                                         </subviews>
                                     </stackView>

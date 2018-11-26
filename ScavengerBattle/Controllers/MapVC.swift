@@ -13,11 +13,13 @@ import FirebaseDatabase
 import FirebaseDatabase.FIRDataSnapshot
 
 protocol AlertDelegate: class {
-    func sendAlert()
+    func sendAlert(id: String)
 }
 
 class MapVC: UIViewController, MKMapViewDelegate,AlertDelegate {
 
+    @IBOutlet weak var timerLblView: UIView!
+    @IBOutlet weak var timerLbl: UILabel!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var bagBtn: UIBarButtonItem!
     
@@ -26,9 +28,12 @@ class MapVC: UIViewController, MKMapViewDelegate,AlertDelegate {
     var count = 0
     var ref: DatabaseReference!
     var zones: DatabaseReference!
+    var elapsedTime = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        timerLblView.layer.cornerRadius = timerLblView.layer.frame.height/2
         
         ref = Database.database().reference()
         zones = ref.child("Zones")
@@ -43,22 +48,32 @@ class MapVC: UIViewController, MKMapViewDelegate,AlertDelegate {
          let region = MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2D(latitude: coords[0].0, longitude: coords[0].1), 500, 500)
         mapView.setRegion(region, animated: true)
         
-        
-        
-//        addZones()
-        // Do any additional setup after loading the view.
+        setGameTime()
     }
     
-    func sendAlert(){
-        if count == 0 {
+    func sendAlert(id: String){
             print("Sending Alert Happened")
+            print("Adding Weapon: \(count) to your arsenal ")
             let alert = UIAlertController(title: "Title", message: "Message", preferredStyle: .alert)
             let cancelButton = UIAlertAction(title: "Close", style: .cancel, handler: nil)
             alert.addAction(cancelButton)
             self.present(alert, animated: false, completion: nil)
             count += 1
-        }
         
+        //Get zone from ID
+        //Look up weapon from zoneID
+        guard let powerZone = Constants.Map.zones[id] else {return}
+        let itemId = powerZone.itemID
+        
+        //Get the item for the the weapon list
+        guard let addItem = Constants.Arsenal.totalItems[itemId] else {return}
+        Constants.Arsenal.items.append(addItem)
+        
+        
+        print("Items so far........  ")
+        for item in Constants.Arsenal.items {
+            print("Item: \(item.name), does \(item.damage) damage")
+        }
     }
     
     @IBAction func bagBtnPressed(_ sender: Any) {
@@ -84,26 +99,20 @@ class MapVC: UIViewController, MKMapViewDelegate,AlertDelegate {
                                        "id": String(describing: index),
                                        "itemID": "FirstItemID"]
             ref.child("Zones").child(key).setValue(zone)
-            
-            //        var coordinate: CLLocationCoordinate2D
-            //        var radius: CLLocationDistance
-            //        var id: String
-            //        var itemID: String
-            
         }
     }
     
     //Load Spots In
     func buildSpots(){
         zones.observe(DataEventType.value){ snapshot in
-        
             for child in snapshot.children.allObjects as! [DataSnapshot] {
                 print("Key: \(child.key)")
+                
                 guard let zone = PowerZone(snapshot: child) else{
                     print("Error loading")
                     return
                 }
-                print("Zone: \(zone.coordinate)")
+                print("Weapon in zone: \(zone.id) has item: \(String(describing: Constants.Arsenal.totalItems[zone.itemID]?.name))")
                 //Add Pin
                 self.mapView.addAnnotation(zone)
                 //Add Overlay
@@ -112,6 +121,9 @@ class MapVC: UIViewController, MKMapViewDelegate,AlertDelegate {
                 //Start Monitorying
                 let fenceRegion = self.region(with: zone)
                 self.locationManager.startMonitoring(for: fenceRegion)
+                
+                //Add to List of Zones
+                Constants.Map.zones[zone.id] = zone
             }
         }
     }
@@ -126,11 +138,9 @@ class MapVC: UIViewController, MKMapViewDelegate,AlertDelegate {
     //MKMapViewDelegate
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        print("__-------------------------------------")
         let id = "powerZone"
         if annotation is PowerZone {
             var zoneView = mapView.dequeueReusableAnnotationView(withIdentifier: id) as? MKPinAnnotationView
-            
             if zoneView == nil{
                 zoneView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: id)
                 //Able to add stuff to annotation bubble
@@ -157,10 +167,25 @@ class MapVC: UIViewController, MKMapViewDelegate,AlertDelegate {
     }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        
     }
     
-   
+    func setGameTime(){
+        let time = Timer(timeInterval: 1, repeats: true) { (timer) in
+            print("Fired()")
+            self.elapsedTime += 1
+            self.timerLbl.text = "Time Left: \(5-self.elapsedTime)"
+            if self.elapsedTime >= 5 {
+                self.timerLbl.text = "Time Over"
+                
+                let storyboard: UIStoryboard = UIStoryboard(name: "Battle", bundle: .main)
+                let viewController = storyboard.instantiateInitialViewController()!
+                self.show(viewController, sender: self)
+                timer.invalidate()
+            }
+            
+        }
+        RunLoop.current.add(time, forMode: .defaultRunLoopMode)
+    }
 }
 
 extension MKMapView {
@@ -175,5 +200,9 @@ extension MapVC: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         mapView.showsUserLocation = status == .authorizedAlways
     }
+}
+
+extension MapVC {
+    
 }
 
