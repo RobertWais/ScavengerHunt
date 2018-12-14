@@ -11,6 +11,11 @@ import UIKit
 class BagModalVC: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    
+    //Access to which weapon has been selected
+    //0 - From MapVC
+    //1 - From BattleVC
+    var sender = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegates()

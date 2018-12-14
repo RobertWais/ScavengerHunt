@@ -8,7 +8,12 @@
 
 import UIKit
 
-class BattleVC: UIViewController {
+protocol  SetWeapon: class {
+    func assignWeapon(weapon: Item)
+}
+
+class BattleVC: UIViewController,SetWeapon {
+    
 
     //Top of View Controller
     @IBOutlet weak var selfLbl: UILabel!
@@ -31,6 +36,8 @@ class BattleVC: UIViewController {
     var selfHealth: CGFloat = 0.0
     var opponentHealth: CGFloat = 0.0
     
+    var playerWeapon = Item(name: "Default", damage: 0.0)
+    
     
     
     override func viewDidLoad() {
@@ -41,7 +48,14 @@ class BattleVC: UIViewController {
 
         setComputer()
         setHealth()
+        
+        //playGame
         // Do any additional setup after loading the view.
+    }
+    
+    //Set Weapon Delegate
+    func assignWeapon(weapon: Item) {
+        playerWeapon = weapon
     }
     
     func setComputer(){
@@ -61,7 +75,7 @@ class BattleVC: UIViewController {
         opponentHealthView.addSubview(actualHealthOpponent!)
     }
     
-    func lowerHealthEnemy(){
+    func lowerHealthEnemy(weapon: Item){
         opponentHealth -= 25
         actualHealthOpponent?.removeFromSuperview()
         actualHealthOpponent = UIView(frame: CGRect(x: 0, y: 0, width: opponentHealth, height: opponentHealthView.frame.height))
@@ -70,7 +84,7 @@ class BattleVC: UIViewController {
         checkHealth()
     }
     
-    func lowerHealthSelf(){
+    func lowerHealthSelf(weapon: Item){
         selfHealth -= 25
         actualHealthSelf?.removeFromSuperview()
         actualHealthSelf = UIView(frame: CGRect(x: 0, y: 0, width: selfHealth, height: selfHealthView.frame.height))
@@ -85,9 +99,64 @@ class BattleVC: UIViewController {
     func checkHealth(){
         if (opponentHealth <= 0) {
             //Self wins
+            endGame(result: 0)
         }else if(selfHealth <= 0){
             //Opponent Wins
+            endGame(result: 1)
         }
     }
     
+    func game(){
+        //0: Computer
+        //1: Player
+        var move = 0
+        while(opponentHealth > 0 && selfHealth > 0){
+            //If 0
+            if move == 0 {
+                computerMove()
+            }else if move == 1{
+                playerMove()
+            }
+        }
+        checkHealth()
+    }
+    
+    func computerMove(){
+        //Randomize Weapon
+        //Attack the user
+        
+        let item = Item(name: "Change", damage: 1.0)
+        lowerHealthSelf(weapon: item)
+    }
+    
+    func playerMove(){
+        //Allow player to grab weapon
+        //Present Modal Controller
+        let modalVC = storyboard?.instantiateViewController(withIdentifier: "BagModalVC") as! BagModalVC
+        modalVC.modalPresentationStyle = .overCurrentContext
+        present(modalVC, animated: true,completion: nil)
+        
+        
+        let item = Item(name: "Change", damage: 1)
+        lowerHealthEnemy(weapon: item)
+    }
+    
+    func endGame(result: Int){
+        var gameResult = ""
+        if result == 0 {
+            gameResult = "You have won!"}
+        else{
+            gameResult = "You have lost..."
+        }
+        
+        let alert = UIAlertController(title: "\(gameResult)",
+                                      message: "You will now return to the main screen",
+                                      preferredStyle: .alert)
+        
+        let cancel = UIAlertAction(title: "Back to main Menu", style: .destructive, handler: { (action) -> Void in
+            //Re-route to controller
+        })
+        alert.addAction(cancel)
+        
+    }
 }
