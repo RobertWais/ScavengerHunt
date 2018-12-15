@@ -110,7 +110,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func handleEvent(_ region: CLRegion){
-        
+        self.locationManager.stopMonitoring(for: region)
         if UIApplication.shared.applicationState == .active {
             //Handle local
             delegateAlert?.sendAlert(id: region.identifier)
@@ -129,6 +129,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
         }
+    
     }
 }
 

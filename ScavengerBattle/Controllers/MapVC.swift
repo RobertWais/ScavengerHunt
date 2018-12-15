@@ -29,6 +29,7 @@ class MapVC: UIViewController, MKMapViewDelegate,AlertDelegate {
     var ref: DatabaseReference!
     var zones: DatabaseReference!
     var elapsedTime = 0
+    var turnOff = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +53,7 @@ class MapVC: UIViewController, MKMapViewDelegate,AlertDelegate {
     }
     
     func sendAlert(id: String){
+        
             print("Sending Alert Happened")
             print("Adding Weapon: \(count) to your arsenal ")
             let alert = UIAlertController(title: "Title", message: "Message", preferredStyle: .alert)
@@ -59,31 +61,33 @@ class MapVC: UIViewController, MKMapViewDelegate,AlertDelegate {
             alert.addAction(cancelButton)
             self.present(alert, animated: false, completion: nil)
             count += 1
-        
-        //Get zone from ID
-        //Look up weapon from zoneID
-        guard let powerZone = Constants.Map.zones[id] else {return}
-        let itemId = powerZone.itemID
-        
-        //Get the item for the the weapon list
-        guard let addItem = Constants.Arsenal.totalItems[itemId] else {return}
-        Constants.Arsenal.items.append(addItem)
-        
-        
-        print("Items so far........  ")
-        for item in Constants.Arsenal.items {
-            print("Item: \(item.name), does \(item.damage) damage")
-        }
+            
+            //Get zone from ID
+            //Look up weapon from zoneID
+            guard let powerZone = Constants.Map.zones[id] else {return}
+            let itemId = powerZone.itemID
+            
+            //Get the item for the the weapon list
+            guard let addItem = Constants.Arsenal.totalItems[itemId] else {return}
+            
+            //GOLD
+            Constants.Arsenal.items.append(addItem)
+            
+            
+            print("Items so far........  ")
+            for item in Constants.Arsenal.items {
+                print("Item: \(item.name), does \(item.damage) damage")
+            }
     }
     
     @IBAction func bagBtnPressed(_ sender: Any) {
         let modalVC = storyboard?.instantiateViewController(withIdentifier: "BagModalVC") as! BagModalVC
         modalVC.modalPresentationStyle = .overCurrentContext
+        modalVC.sender = 0
         present(modalVC, animated: true,completion: nil)
         
     }
     @IBAction func zoomToUserLocation(_ sender: Any) {
-        print("Tapped")
         mapView.zoomOnUser()
     }
     
@@ -177,6 +181,8 @@ class MapVC: UIViewController, MKMapViewDelegate,AlertDelegate {
             if self.elapsedTime >= 5 {
                 self.timerLbl.text = "Time Over"
                 
+                
+                self.turnOff = true
                 let storyboard: UIStoryboard = UIStoryboard(name: "Battle", bundle: .main)
                 let viewController = storyboard.instantiateInitialViewController()!
                 self.show(viewController, sender: self)

@@ -11,6 +11,7 @@ import UIKit
 class BagModalVC: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    weak var delegate: SetWeaponDelegate?
     
     //Access to which weapon has been selected
     //0 - From MapVC
@@ -20,9 +21,9 @@ class BagModalVC: UIViewController {
         super.viewDidLoad()
         setDelegates()
         
-        let cancelGesture = UITapGestureRecognizer(target: self, action: #selector(cancel))
-        // Do any additional setup after loading the view.
-        self.view.addGestureRecognizer(cancelGesture)
+//        let cancelGesture = UITapGestureRecognizer(target: self, action: #selector(cancel))
+//        // Do any additional setup after loading the view.
+//        self.view.addGestureRecognizer(cancelGesture)
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,17 +41,31 @@ extension BagModalVC: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PowerUpId") as! PowerUpCell
         
-        cell.configureCell(item: Item(name: "Axe", damage: Double(indexPath.row*10)))
+        cell.configureCell(item: Constants.Arsenal.items[indexPath.row])
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return Constants.Arsenal.items.count
     }
     
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        //From BattleVC
+        //Return item that was selected
+        print("Selected")
+        if sender == 1 {
+            delegate?.assignWeapon(weapon: Constants.Arsenal.items[indexPath.row])
+            dismiss(animated: false, completion: nil)
+        }else{
+            //Was from MapVC
+            dismiss(animated: false, completion: nil)
+        }
     }
     
     func setDelegates(){

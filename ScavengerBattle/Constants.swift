@@ -28,11 +28,10 @@ struct Constants {
     
     //Everything to do with weapons
     struct Arsenal{
-        
         static var items = [Item]()
-        static var totalItems: [String: Item] = [   "1":Item(name: "Axe", damage: 20.0),
+        static var totalItems: [String: Item] = [   "1":Item(name: "Axe", damage: 1.0),
                                                  "2":Item(name: "Hammer", damage: 10.0),
                                                  "3":Item(name: "Sword", damage: 30.0)]
-        
     }
+//    Item(name: "Axe", damage: 10000.0),Item(name: "Hammer", damage: 10.0),Item(name: "Sword", damage: 30.0)
 }
