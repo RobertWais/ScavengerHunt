@@ -115,6 +115,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             //Handle local
             delegateAlert?.sendAlert(id: region.identifier)
         } else{
+            //Add weapon name
             let notification = UNMutableNotificationContent()
             notification.title = "Notification"
             notification.subtitle = "Subtitle"
@@ -129,7 +130,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
         }
-    
     }
 }
 

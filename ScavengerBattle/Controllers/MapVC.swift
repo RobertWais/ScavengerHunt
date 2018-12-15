@@ -56,10 +56,6 @@ class MapVC: UIViewController, MKMapViewDelegate,AlertDelegate {
         
             print("Sending Alert Happened")
             print("Adding Weapon: \(count) to your arsenal ")
-            let alert = UIAlertController(title: "Title", message: "Message", preferredStyle: .alert)
-            let cancelButton = UIAlertAction(title: "Close", style: .cancel, handler: nil)
-            alert.addAction(cancelButton)
-            self.present(alert, animated: false, completion: nil)
             count += 1
             
             //Get zone from ID
@@ -73,11 +69,14 @@ class MapVC: UIViewController, MKMapViewDelegate,AlertDelegate {
             //GOLD
             Constants.Arsenal.items.append(addItem)
             
-            
-            print("Items so far........  ")
-            for item in Constants.Arsenal.items {
-                print("Item: \(item.name), does \(item.damage) damage")
-            }
+        let alert = UIAlertController(title: "Acquired \(addItem.name)", message: "Damage: \(addItem.damage)", preferredStyle: .alert)
+        let cancelButton = UIAlertAction(title: "Close", style: .cancel, handler: nil)
+        alert.addAction(cancelButton)
+        self.present(alert, animated: false, completion: nil)
+//            print("Items so far........  ")
+//            for item in Constants.Arsenal.items {
+//                print("Item: \(item.name), does \(item.damage) damage")
+//            }
     }
     
     @IBAction func bagBtnPressed(_ sender: Any) {
