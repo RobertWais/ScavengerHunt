@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<gpx version="1.1" creator="Xcode">=
+    <wpt lat="43.814466" lon="-91.239214">
+        <name>Toppers</name>
+    </wpt>
+    <wpt lat="43.817245" lon="-91.245297">
+        <name>Rudys</name>
+    </wpt>
+    <wpt lat="43.817338" lon="-91.239096">
+        <name>Kwik Trip</name>
+    </wpt>
+</gpx>

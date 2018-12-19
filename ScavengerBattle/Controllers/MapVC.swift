@@ -21,7 +21,6 @@ class MapVC: UIViewController, MKMapViewDelegate,AlertDelegate {
     @IBOutlet weak var timerLblView: UIView!
     @IBOutlet weak var timerLbl: UILabel!
     @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var bagBtn: UIBarButtonItem!
     
     var locationManager = CLLocationManager()
     let coords = [(43.814466,-91.239214),(43.817338,-91.239096), (43.817245,-91.245297), (43.815023,-91.245254)]
@@ -46,6 +45,7 @@ class MapVC: UIViewController, MKMapViewDelegate,AlertDelegate {
         locationManager.requestAlwaysAuthorization()
         buildSpots()
         
+        //Set initial Spot on map
          let region = MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2D(latitude: coords[0].0, longitude: coords[0].1), 500, 500)
         mapView.setRegion(region, animated: true)
         
@@ -67,16 +67,13 @@ class MapVC: UIViewController, MKMapViewDelegate,AlertDelegate {
             guard let addItem = Constants.Arsenal.totalItems[itemId] else {return}
             
             //GOLD
+        if(!Constants.Arsenal.itemSet.contains((Constants.Arsenal.totalItems[itemId]?.name)!)){
             Constants.Arsenal.items.append(addItem)
-            
-        let alert = UIAlertController(title: "Acquired \(addItem.name)", message: "Damage: \(addItem.damage)", preferredStyle: .alert)
-        let cancelButton = UIAlertAction(title: "Close", style: .cancel, handler: nil)
-        alert.addAction(cancelButton)
-        self.present(alert, animated: false, completion: nil)
-//            print("Items so far........  ")
-//            for item in Constants.Arsenal.items {
-//                print("Item: \(item.name), does \(item.damage) damage")
-//            }
+            let alert = UIAlertController(title: "Acquired \(addItem.name)", message: "Damage: \(addItem.damage)", preferredStyle: .alert)
+            let cancelButton = UIAlertAction(title: "Close", style: .cancel, handler: nil)
+            alert.addAction(cancelButton)
+            self.present(alert, animated: false, completion: nil)
+        }
     }
     
     @IBAction func bagBtnPressed(_ sender: Any) {
@@ -109,8 +106,6 @@ class MapVC: UIViewController, MKMapViewDelegate,AlertDelegate {
     func buildSpots(){
         zones.observe(DataEventType.value){ snapshot in
             for child in snapshot.children.allObjects as! [DataSnapshot] {
-                print("Key: \(child.key)")
-                
                 guard let zone = PowerZone(snapshot: child) else{
                     print("Error loading")
                     return
@@ -131,15 +126,14 @@ class MapVC: UIViewController, MKMapViewDelegate,AlertDelegate {
         }
     }
     
+    //Creating a region with a self made class Powerzone
     func region(with zone: PowerZone) -> CLCircularRegion {
         let region = CLCircularRegion(center: zone.coordinate, radius: zone.radius, identifier: zone.id)
         region.notifyOnEntry = true
         return region
     }
     
-    
     //MKMapViewDelegate
-    
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let id = "powerZone"
         if annotation is PowerZone {
@@ -150,7 +144,6 @@ class MapVC: UIViewController, MKMapViewDelegate,AlertDelegate {
                 zoneView?.canShowCallout = true
                 
             }else{
-                //REVISIT
                 zoneView?.annotation = annotation
             }
             return zoneView
@@ -158,6 +151,7 @@ class MapVC: UIViewController, MKMapViewDelegate,AlertDelegate {
         return nil
     }
     
+    //What the ciruclar overlay looks like
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         if overlay is MKCircle {
             let renderer = MKCircleRenderer(overlay: overlay)
@@ -172,15 +166,16 @@ class MapVC: UIViewController, MKMapViewDelegate,AlertDelegate {
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
     }
     
+    //Setting the Game time
+    //To change, change line 175
+    // and change line 177
     func setGameTime(){
         let time = Timer(timeInterval: 1, repeats: true) { (timer) in
             print("Fired()")
             self.elapsedTime += 1
-            self.timerLbl.text = "Time Left: \(5-self.elapsedTime)"
-            if self.elapsedTime >= 5 {
+            self.timerLbl.text = "Time Left: \(10-self.elapsedTime)"
+            if self.elapsedTime >= 10 {
                 self.timerLbl.text = "Time Over"
-                
-                
                 self.turnOff = true
                 let storyboard: UIStoryboard = UIStoryboard(name: "Battle", bundle: .main)
                 let viewController = storyboard.instantiateInitialViewController()!
@@ -193,6 +188,7 @@ class MapVC: UIViewController, MKMapViewDelegate,AlertDelegate {
     }
 }
 
+//Find current location of user
 extension MKMapView {
     func zoomOnUser() {
         guard let coordinate = userLocation.location?.coordinate else { return }
@@ -201,13 +197,10 @@ extension MKMapView {
     }
 }
 
+//Configuration for user to always be shown
 extension MapVC: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         mapView.showsUserLocation = status == .authorizedAlways
     }
-}
-
-extension MapVC {
-    
 }
 

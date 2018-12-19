@@ -46,7 +46,7 @@
 		2E86437021802E3000D558FC /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2E8643732180336D00D558FC /* Map.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
 		2E864376218035DC00D558FC /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
-		2E9AD7B82185658200FD0C88 /* CoateHall.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = CoateHall.gpx; sourceTree = "<group>"; };
+		2E9AD7B82185658200FD0C88 /* ExampleMap.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ExampleMap.gpx; sourceTree = "<group>"; };
 		2E9E1F27218A88A100470932 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2EE905BB218D348D00748AC2 /* Battle.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Battle.storyboard; sourceTree = "<group>"; };
 		2EE905BD218D38B300748AC2 /* BattleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleVC.swift; sourceTree = "<group>"; };
@@ -147,7 +147,7 @@
 		2E9AD7B72185654800FD0C88 /* Locations */ = {
 			isa = PBXGroup;
 			children = (
-				2E9AD7B82185658200FD0C88 /* CoateHall.gpx */,
+				2E9AD7B82185658200FD0C88 /* ExampleMap.gpx */,
 			);
 			path = Locations;
 			sourceTree = "<group>";

@@ -24,6 +24,7 @@ class BattleVC: UIViewController,SetWeaponDelegate {
     @IBOutlet weak var opponentLblHealth: UILabel!
     @IBOutlet weak var selfHealthLblNumber: UILabel!
     
+    @IBOutlet weak var damageDoneLbl: UILabel!
     @IBOutlet weak var opponentHealthLblNumber: UILabel!
     //HealthBars
     @IBOutlet weak var selfHealthView: UIView!
@@ -38,9 +39,10 @@ class BattleVC: UIViewController,SetWeaponDelegate {
     var selfHealth: CGFloat = 0.0
     var opponentHealth: CGFloat = 0.0
     
-    var playerWeapon = Item(name: "Default", damage: 0.0)
+    var playerWeapon = Item(name: "Default", damage: 0.0, criticalDamage: 0.0 )
     var move = 0
     
+    var duplicates = Set<String>()
     
     
     override func viewDidLoad() {
@@ -57,8 +59,10 @@ class BattleVC: UIViewController,SetWeaponDelegate {
         setHealth()
         
         //playGame
+        damageDoneLbl.text = "Computer's Turn"
         computerRound()
         // Do any additional setup after loading the view.
+        
     }
     
     //Set Weapon Delegate
@@ -73,7 +77,6 @@ class BattleVC: UIViewController,SetWeaponDelegate {
     }
     
     func setComputer(){
-//        opponentLbl.text = "Computer"
         opponentLblHealth.text = "Computer"
     }
     
@@ -90,7 +93,16 @@ class BattleVC: UIViewController,SetWeaponDelegate {
     }
     
     func lowerHealthEnemy(weapon: Item){
-        opponentHealth -= CGFloat(weapon.damage)
+        var realDamage = weapon.damage
+        var num = arc4random_uniform(10)+1
+        if(num == 1){
+            realDamage = weapon.criticalDamage
+            damageDoneLbl.text = "Critical Attack \(realDamage) damage inflicted on computer"
+        }else{
+            damageDoneLbl.text = "\(realDamage) damage inflicted on computer"
+        }
+        
+        opponentHealth -= CGFloat(realDamage)
         actualHealthOpponent?.removeFromSuperview()
         if opponentHealth < 0{
             opponentHealth = 0
@@ -108,7 +120,17 @@ class BattleVC: UIViewController,SetWeaponDelegate {
     }
     
     func lowerHealthSelf(weapon: Item){
-        selfHealth -= CGFloat(weapon.damage)
+        //Check for critical
+        var realDamage = weapon.damage
+        var num = arc4random_uniform(10)+1
+        if(num == 1){
+            realDamage = weapon.criticalDamage
+            damageDoneLbl.text = "Critical Attack: \(realDamage) damage done to you"
+        }else{
+            damageDoneLbl.text = "\(realDamage) damage done to you"
+        }
+        
+        selfHealth -= CGFloat(realDamage)
         actualHealthSelf?.removeFromSuperview()
         if selfHealth < 0{
             selfHealth = 0
@@ -127,12 +149,6 @@ class BattleVC: UIViewController,SetWeaponDelegate {
 
     @IBAction func attackBtnPressed(_ sender: Any) {
         playerMove()
-        //Check if it is computers turn or players
-        
-        //If players
-            //Display Moadl controller
-            //Call Computer Move
-        //Else do nothing
     }
     
     func checkHealth() -> Bool{
@@ -145,34 +161,12 @@ class BattleVC: UIViewController,SetWeaponDelegate {
         }
         return true
     }
-    
-    func game(){
-        //0: Computer
-        //1: Player
-        
-//        var move = 0
-//        while(opponentHealth > 0 && selfHealth > 0){
-//            //If 0
-//            if move == 0 {
-//                computerMove()
-//                print("Computer Made a move")
-//                move = 1
-//            }else if move == 1{
-//                playerMove()
-//                print("Playaer Made a move")
-//                move = 0
-//            }
-//        }
-//        checkHealth()
-    }
-    
     func playerRound(){
-        //enable Button
+        //Enable Attack Button
         attackBtn.isEnabled = true
     }
     
     func computerRound(){
-        
         //Wait a second for computer to attack
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             self.computerMove()
@@ -205,9 +199,21 @@ class BattleVC: UIViewController,SetWeaponDelegate {
     func computerMove(){
         //Randomize Weapon
         //Attack the user
-        var num = arc4random_uniform(100) + 1;
-        let item = Item(name: "Rock", damage: Double(num))
-        lowerHealthSelf(weapon: item)
+        var num = arc4random_uniform(3)+1;
+        print("Num: \(num)")
+        var stringChoice = ""
+        switch num {
+        case 1:
+            stringChoice = "1"
+        case 2:
+            stringChoice = "2"
+        case 3:
+            stringChoice = "3"
+        default:
+            stringChoice = "1"
+        }
+        let weapon = Constants.Arsenal.totalItems[stringChoice]
+        lowerHealthSelf(weapon: weapon!)
     }
     
     func playerMove(){
@@ -222,10 +228,14 @@ class BattleVC: UIViewController,SetWeaponDelegate {
     }
     
     func endGame(){
+        //Remove items for New Game
+        Constants.Arsenal.items.removeAll(keepingCapacity: false)
         var gameResult = ""
         if (opponentHealth <= 0) {
-            gameResult = "You have won!"}
-        else{
+            gameResult = "You have won!"
+            damageDoneLbl.text = "You have won"
+        }else{
+            self.damageDoneLbl.text = "You have have lost..."
             gameResult = "You have lost..."
         }
         

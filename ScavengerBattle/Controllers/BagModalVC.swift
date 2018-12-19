@@ -20,10 +20,6 @@ class BagModalVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegates()
-        
-//        let cancelGesture = UITapGestureRecognizer(target: self, action: #selector(cancel))
-//        // Do any additional setup after loading the view.
-//        self.view.addGestureRecognizer(cancelGesture)
     }
 
     override func didReceiveMemoryWarning() {
@@ -64,6 +60,7 @@ extension BagModalVC: UITableViewDelegate,UITableViewDataSource{
             dismiss(animated: false, completion: nil)
         }else{
             //Was from MapVC
+            //Don't call delegate
             dismiss(animated: false, completion: nil)
         }
     }

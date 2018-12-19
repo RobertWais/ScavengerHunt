@@ -12,10 +12,12 @@ import Foundation
 class Item{
     private var _name = ""
     private var _damage = 0.0
+    private var _criticalDamage = 0.0
     
-    init(name: String, damage: Double){
+    init(name: String, damage: Double, criticalDamage: Double){
         self._name = name
         self._damage = damage
+        self._criticalDamage = criticalDamage
     }
     
     var name: String {
@@ -24,5 +26,9 @@ class Item{
     
     var damage: Double{
         return _damage
+    }
+    
+    var criticalDamage: Double{
+        return _criticalDamage
     }
 }

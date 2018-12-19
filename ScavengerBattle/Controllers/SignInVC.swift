@@ -52,17 +52,17 @@ class SignInVC: UIViewController {
         //1 - Plyaer
         if sender.selectedSegmentIndex == 0{
             tableView.isHidden = true
-            print("Computer")
             ref.child("testId").setValue(nil)
         }else if sender.selectedSegmentIndex == 1{
             tableView.isHidden = false
-            print("Player")
             let user: [String:Any] = ["testId": ["id": "1",
                                                   "username":"CurrentUser"]]
             ref.updateChildValues(user)
         }
     }
     
+    //Waiting for the user.. this would have been implemented more
+    //for multiplayer
     func setObservers(){
         ref.observe(DataEventType.childAdded) { (data) in
             if let user = User(snapshot: data){
@@ -95,6 +95,7 @@ class SignInVC: UIViewController {
     
 }
 
+//Closing the keyboard on other touches
 extension SignInVC: UITextFieldDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)

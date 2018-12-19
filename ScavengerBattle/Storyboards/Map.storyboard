@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="N7R-49-YUI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="N7R-49-YUI">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -58,14 +59,8 @@
                                 <action selector="zoomToUserLocation:" destination="Jje-gV-yaV" id="RN3-56-rcA"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Bag" id="vvI-Og-U4G">
-                            <connections>
-                                <action selector="bagBtnPressed:" destination="Jje-gV-yaV" id="7zI-mR-fH6"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="bagBtn" destination="vvI-Og-U4G" id="zLq-OB-3OS"/>
                         <outlet property="mapView" destination="mat-np-i8Q" id="x9j-FZ-mWC"/>
                         <outlet property="timerLbl" destination="u03-db-5dA" id="4HN-c1-bmC"/>
                         <outlet property="timerLblView" destination="avE-oC-EDw" id="wm9-3Z-VRX"/>
@@ -101,22 +96,17 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="345" height="43.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Cp-kh-2eW" customClass="PowerUPCe">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="115" height="43.5"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="172.5" height="43.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Damage" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v3I-fx-aGZ">
-                                                                    <rect key="frame" x="115" y="0.0" width="115" height="43.5"/>
+                                                                    <rect key="frame" x="172.5" y="0.0" width="172.5" height="43.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RlI-Sy-iqD">
-                                                                    <rect key="frame" x="230" y="0.0" width="115" height="43.5"/>
-                                                                    <color key="tintColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                                    <state key="normal" title="Discard"/>
-                                                                </button>
                                                             </subviews>
                                                         </stackView>
                                                     </subviews>
@@ -129,7 +119,6 @@
                                                 </tableViewCellContentView>
                                                 <connections>
                                                     <outlet property="damageName" destination="v3I-fx-aGZ" id="eoV-OQ-Ov7"/>
-                                                    <outlet property="discardButton" destination="RlI-Sy-iqD" id="MHs-mJ-b0C"/>
                                                     <outlet property="itemName" destination="8Cp-kh-2eW" id="X7L-T7-5ik"/>
                                                 </connections>
                                             </tableViewCell>

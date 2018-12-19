@@ -117,9 +117,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else{
             //Add weapon name
             let notification = UNMutableNotificationContent()
-            notification.title = "Notification"
-            notification.subtitle = "Subtitle"
-            notification.body = "Body"
+            notification.title = "You have acquired a weapon"
+            notification.subtitle = ""
+            notification.body = ""
             
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0, repeats: false)
             let request = UNNotificationRequest(identifier: "EnteredLocation", content: notification, trigger: trigger)

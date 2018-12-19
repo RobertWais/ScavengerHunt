@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UFS-RU-NhV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UFS-RU-NhV">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -49,7 +50,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="W7Y-BI-Ssr">
                                                 <rect key="frame" x="0.0" y="0.0" width="100" height="90.333333333333329"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uSj-bA-WWc">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uSj-bA-WWc">
                                                         <rect key="frame" x="0.0" y="0.0" width="100" height="45"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="100" id="Cf6-rT-z4u"/>
@@ -136,6 +137,7 @@
                     </view>
                     <connections>
                         <outlet property="attackBtn" destination="3Ff-jp-CzG" id="tV5-v0-gFO"/>
+                        <outlet property="damageDoneLbl" destination="kd9-9y-ITe" id="DIq-uh-rUa"/>
                         <outlet property="opponentHealthLblNumber" destination="NaF-pL-qYI" id="V8c-32-FdG"/>
                         <outlet property="opponentHealthView" destination="1Gs-Nz-IK1" id="VJe-pA-rT6"/>
                         <outlet property="opponentLblHealth" destination="SBx-GT-rjh" id="Gp4-WM-9i0"/>
