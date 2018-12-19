@@ -54,7 +54,6 @@ extension BagModalVC: UITableViewDelegate,UITableViewDataSource{
         
         //From BattleVC
         //Return item that was selected
-        print("Selected")
         if sender == 1 {
             delegate?.assignWeapon(weapon: Constants.Arsenal.items[indexPath.row])
             dismiss(animated: false, completion: nil)

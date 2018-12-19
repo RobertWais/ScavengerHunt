@@ -53,9 +53,6 @@ class MapVC: UIViewController, MKMapViewDelegate,AlertDelegate {
     }
     
     func sendAlert(id: String){
-        
-            print("Sending Alert Happened")
-            print("Adding Weapon: \(count) to your arsenal ")
             count += 1
             
             //Get zone from ID
@@ -110,7 +107,8 @@ class MapVC: UIViewController, MKMapViewDelegate,AlertDelegate {
                     print("Error loading")
                     return
                 }
-                print("Weapon in zone: \(zone.id) has item: \(String(describing: Constants.Arsenal.totalItems[zone.itemID]?.name))")
+                //Debugging help
+                //print("Weapon in zone: \(zone.id) has item: \(String(describing: Constants.Arsenal.totalItems[zone.itemID]?.name))")
                 //Add Pin
                 self.mapView.addAnnotation(zone)
                 //Add Overlay
@@ -171,7 +169,6 @@ class MapVC: UIViewController, MKMapViewDelegate,AlertDelegate {
     // and change line 177
     func setGameTime(){
         let time = Timer(timeInterval: 1, repeats: true) { (timer) in
-            print("Fired()")
             self.elapsedTime += 1
             self.timerLbl.text = "Time Left: \(10-self.elapsedTime)"
             if self.elapsedTime >= 10 {

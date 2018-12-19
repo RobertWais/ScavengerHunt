@@ -185,8 +185,6 @@ class BattleVC: UIViewController,SetWeaponDelegate {
                     self.endGame()
                     return
                 }else{
-                    print("Computer Made a move")
-                    
                     self.round(1)
                 }
             }
@@ -200,7 +198,6 @@ class BattleVC: UIViewController,SetWeaponDelegate {
         //Randomize Weapon
         //Attack the user
         var num = arc4random_uniform(3)+1;
-        print("Num: \(num)")
         var stringChoice = ""
         switch num {
         case 1:
